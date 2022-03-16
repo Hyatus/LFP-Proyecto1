@@ -39,7 +39,7 @@ entrada = '''
 	<
 		tipo: "boton",
 		valor: "Valor",
-		evento: <entrada>
+		evento: <info>
 	>
  
 ]

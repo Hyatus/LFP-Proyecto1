@@ -15,6 +15,7 @@ def escribirFormulario(listaElementos):
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&family=Roboto:wght@700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
         </head>
         <body>
         <br>
@@ -30,13 +31,11 @@ def escribirFormulario(listaElementos):
     
     file = open('formulario.html',"w")
     file.write(encabezado)
-    file.write("<div>")
-    file.write('<form class="w-50 p-3" style="background-color: #eee;">')
+    file.write('<div class="wrapper">')
+    file.write('<form id="Formulario" class="form w-50 p-3" style="background-color: #eee;">')
     
     for i in range(len(listaElementos)):
         # Tipo de elemento 
-        NumeroRadio = 0
-        NumeroLista = 0
         if "tipo" in listaElementos[i].keys():
             valorTipo = listaElementos[i]["tipo"]
             #Clave del diccionario
@@ -67,7 +66,7 @@ def escribirFormulario(listaElementos):
                 file.write(f'''
                     <div class="mb-3">
                     <label class="form-label">{valorTexto}:</label>
-                    <input type="text" class="form-control" placeholder="{fondoTexto}">
+                    <input type="text"  class="form-control" name="textField" placeholder="{fondoTexto}">
                     </div>
                     ''')
                 
@@ -86,7 +85,7 @@ def escribirFormulario(listaElementos):
                         for i in range(len(elemento)):
                             file.write(f'''
                             <label>
-                            <input type="radio" name="{valorNombreRadio}" value="{elemento[i]}"> {elemento[i]}
+                            <input type="radio" name="radioField" value="{elemento[i]}"> {elemento[i]}
                             </label>
                             ''')
                     file.write('</fieldset>')
@@ -105,14 +104,14 @@ def escribirFormulario(listaElementos):
                 if "valores" in listaElementos[i+2].keys():
                     valoresOption = listaElementos[i+2].values()
                     file.write(f'''
-                              <select class="form-select form-select-lg mb-3">
+                              <select name="selectField" class="form-select form-select-lg mb-3">
                               <option selected>{valorNombreOption}</option>
                                ''')
                     for elemento in valoresOption:
                         valor = 1
                         for i in range(len(elemento)):
                             file.write(f'''
-                                       <option value="{valor}">{elemento[i]}</option>
+                                       <option value="{elemento[i]}">{elemento[i]}</option>
                                        ''')
                             valor += 1
                             #print(elemento[i])
@@ -129,17 +128,24 @@ def escribirFormulario(listaElementos):
                     #Valor que ira dentro de la etiqueta
                     eventoBoton = listaElementos[i+2]["evento"]
                     #print(eventoBoton)
-                    
-                file.write(f'''
+                
+                if eventoBoton == "entrada":
+                    file.write(f'''
                            <div class="mb-3">
                            <button type="button" id="evento" class="btn btn-primary btn-lg">{valorBoton}</button>
                            </div>
                            ''')
-                if eventoBoton == "entrada":
                     file.write(f'''
                              <script type="text/javascript" src="script.js"></script>
                            ''')
-                
+                elif eventoBoton == "info":
+                    file.write(f'''<div>
+                                <input id="evento" type="submit" name="submit" value="{valorBoton}">
+                                </div>''')
+                    file.write(f'''
+                             <script type="text/javascript" src="script2.js"></script>
+                           ''')
+                    
     file.write("</form>")
     file.write("</div>")
     file.write(final)
