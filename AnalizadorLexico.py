@@ -6,7 +6,7 @@ class AnalizadorLexico:
   def __init__(self):
     self.listaTokens = []
     self.listaErrores = []
-    self.PalabrasReservadas = ["formulario","tipo","valor","fondo","nombre","valores","evento","etiqueta","texto","grupo-radio","grupo-option","boton"]
+    self.PalabrasReservadas = ["formulario ","tipo","valor","fondo","nombre","valores","evento","etiqueta","texto","grupo-radio","grupo-option","boton","entrada","info"]
     self.linea = 1 
     self.columna = 0
     self.buffer = ""
@@ -183,7 +183,7 @@ class AnalizadorLexico:
       elif self.estado == 10:
           self.s10()
       self.i += 1
-
+    
 
   def imprimirTokens(self):
       x = PrettyTable()
