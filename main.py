@@ -48,7 +48,6 @@ entrada = '''
 analizadorLexico = AnalizadorLexico()
 escribirArchivoEntrada(entrada)
 
-
 analizadorLexico.analizar(entrada)
 analizadorLexico.imprimirTokens()
 analizadorLexico.imprimirErrores()
@@ -56,10 +55,7 @@ analizadorLexico.imprimirErrores()
 generarTablaTokens(analizadorLexico.listaTokens)
 generarTablaErrores(analizadorLexico.listaErrores)
 
-
-
 listadeTokens = analizadorLexico.listaTokens
-
 
 extraerElementos(listadeTokens)
 

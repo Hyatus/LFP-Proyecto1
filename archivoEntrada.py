@@ -22,7 +22,9 @@ def escribirArchivoEntrada(contenido):
         <br>
         '''
     
-    contenido = f'''<p>{contenido}</p>'''
+    entrada = f'''<div><p><br>
+                {contenido}
+                <br></p></div>'''
                  
     final = ''' 
            </body>
@@ -30,6 +32,6 @@ def escribirArchivoEntrada(contenido):
             '''
             
     file.write(encabezado)
-    file.write(contenido)
+    file.write(entrada)
     file.write(final)
     file.close()
