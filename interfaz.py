@@ -1,6 +1,6 @@
 import sys
-import random
 from PySide2 import QtCore, QtWidgets, QtGui
+import easygui
 from AnalizadorLexico import *
 from TabladeTokens import *
 from TabladeErrores import *
@@ -40,27 +40,36 @@ class MyWidget(QtWidgets.QWidget):
         if opcion == "REPORTE DE ERRORES":
             os.system("TablaErrores.html")
         if opcion == "MANUAL DE USUARIO":
-            pass
+            os.system("MANUAL_U.pdf")
         if opcion == "MANUAL TECNICO":
-            pass
+            os.system("MANUAL_T.pdf")
         
     @QtCore.Slot()
     def magic(self):
-        #self.text.setText(random.choice(self.hello))
         entrada = self.plainTextEdit.toPlainText()
         analizadorLexico = AnalizadorLexico()
         if len(entrada) > 0:
             escribirArchivoEntrada(entrada)
             analizadorLexico.analizar(entrada)
-            #analizadorLexico.imprimirTokens()
-            #analizadorLexico.imprimirErrores()
+            generarTablaTokens(analizadorLexico.listaTokens)
+            generarTablaErrores(analizadorLexico.listaErrores)
+            listadeTokens = analizadorLexico.listaTokens
+            extraerElementos(listadeTokens)
+            os.system("formulario.html")
+        else:
+            ruta_archivo = easygui.fileopenbox() 
+            f = open (ruta_archivo,'r')
+            texto = f.read()
+            f.close()
+            self.plainTextEdit.insertPlainText(texto)
+            escribirArchivoEntrada(texto)
+            analizadorLexico.analizar(texto)
             generarTablaTokens(analizadorLexico.listaTokens)
             generarTablaErrores(analizadorLexico.listaErrores)
             listadeTokens = analizadorLexico.listaTokens
             extraerElementos(listadeTokens)
             os.system("formulario.html")
             
-    
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
 
