@@ -1,26 +1,44 @@
 formulario ~>> [
 	<
 		tipo: "etiqueta",
-		valor: "Nombre"
+		valor: "Nombre"###
 	>,
 	<
-		tipo: "texto",
+		tipo: "texto",###
 		valor: "Nombre",
-		fondo: "Ingrese nombre"
+		fondo: "Ingrese nombre"###
 	>,
 	<
 		tipo: "grupo-radio",
 		nombre: "sexo",
 		valores: ['Masculino', 'Femenino']
 	>,
-	<
-		tipo: "grupo-option",
+	</*/*/*/
+		tipo: "grupo-option",***-*-
 		nombre: "pais",
 		valores: ['Guatemala', 'El Salvador', 'Honduras']
 	>,
 	<
+		tipo: "grupo-option",
+		nombre: "Nombres",
+		valores: ['Cristian', 'Raul', 'Andres',"Sofia"]
+	>,
+		tipo: "grupo-radio",
+		nombre: "colores",
+		valores: ['Rojo',/*/* 'Azul',"Morado"]*/*/*
+	>,
+		tipo: "grupo-radio",
+		nombre: "Animales",
+		valores: ['Perro', 'Tortuga',"Gato"]
+	>,
+	<
 		tipo: "boton",
 		valor: "Valor",
-		evento: <EVENTO>
+		evento: "entrada"
+	>,
+	<
+		tipo: "texto",
+		valor: "Edad",
+		fondo: "Ingrese su edad"
 	>
 ]

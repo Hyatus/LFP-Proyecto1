@@ -85,7 +85,7 @@ def escribirFormulario(listaElementos):
                         for i in range(len(elemento)):
                             file.write(f'''
                             <label>
-                            <input type="radio" name="radioField" value="{elemento[i]}"> {elemento[i]}
+                            <input type="radio" name="{valorNombreRadio}" value="{elemento[i]}"> {elemento[i]}
                             </label>
                             ''')
                     file.write('</fieldset>')
